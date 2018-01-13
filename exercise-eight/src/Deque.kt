@@ -2,21 +2,45 @@ class Deque<T> {
     private var head: Element<T>? = null
 
     fun push(value: T) {
-        // TODO
+        var newNode : Element<T>? = Element(value)
+        if (head == null){
+            head = newNode
+        }
+        else{
+            var lastNode : Element<T>? = head
+            while (lastNode?.next != null){
+                var tempNode : Element<T>? = head
+                lastNode = lastNode?.next
+                lastNode?.prev = tempNode
+                tempNode = tempNode?.next
+            }
+            lastNode?.next = newNode
+            if (newNode?.prev == null){newNode?.prev = head}
+        }
     }
 
     fun pop(): T? {
-        // TODO
-        return shift()
+        var value = head?.value
+        var getValue : Element<T>? = head
+        while (getValue?.next != null){
+            getValue = getValue.next
+        }
+        value = getValue?.value
+        getValue?.prev?.next = null
+        return value
     }
 
     fun unshift(value: T) {
-        // TODO
+        var headCopy : Element<T>? = head
+        var newHead : Element<T> = Element(value)
+        head = newHead
+        head?.next = headCopy
+        headCopy?.prev = newHead
     }
 
     fun shift(): T? {
-        val value = head?.value
-        // TODO
+        var value = head?.value
+        head = head?.next
         return value
     }
 

@@ -43,7 +43,7 @@ object PrimeFactorCalculator {
     }
 
     fun checkIfPrime(value: Int): Boolean{
-        for (x in 2..value-1){
+        for (x in 2..value/2){
             if (value % x == 0) {return false}
         }
 
